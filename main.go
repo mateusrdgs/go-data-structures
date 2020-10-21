@@ -13,6 +13,8 @@ func main() {
 	list.InsertAtEnd(10)
 	list.InsertAtPosition(1, 5)
 
-	list.Print()
+	list.DeleteAtPosition(3)
+
+	list.PrintLength()
 
 }

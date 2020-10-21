@@ -61,6 +61,51 @@ func (l *List) InsertAtPosition(n int, pos int) {
 	}
 }
 
+// DeleteAtBeginning should remove the first node
+func (l *List) DeleteAtBeginning() {
+	if l.Head != nil {
+		l.Head = l.Head.Next
+
+		l.decreaseLength()
+	}
+}
+
+// DeleteAtEnd should remove the last node
+func (l *List) DeleteAtEnd() {
+	if l.Head != nil {
+		temp := l.Head
+
+		for temp.Next.Next != nil {
+			temp = temp.Next
+		}
+		temp.Next = nil
+
+		l.decreaseLength()
+	}
+}
+
+// DeleteAtPosition should delete a node into the given position
+func (l *List) DeleteAtPosition(pos int) {
+	if pos == 0 {
+		l.DeleteAtBeginning()
+	} else if pos <= l.Len {
+		if l.Head != nil {
+			temp := l.Head
+
+			for i := 0; i < pos-2; i++ {
+				temp = temp.Next
+			}
+
+			node := temp.Next
+			temp.Next = node.Next
+
+			l.decreaseLength()
+		}
+	} else {
+		l.DeleteAtEnd()
+	}
+}
+
 // Print should log every item in the list
 func (l *List) Print() {
 	temp := l.Head
@@ -71,6 +116,15 @@ func (l *List) Print() {
 	}
 }
 
+// PrintLength should log the list length
+func (l *List) PrintLength() {
+	fmt.Println(l.Len)
+}
+
 func (l *List) increaseLength() {
 	l.Len = l.Len + 1
+}
+
+func (l *List) decreaseLength() {
+	l.Len = l.Len - 1
 }
