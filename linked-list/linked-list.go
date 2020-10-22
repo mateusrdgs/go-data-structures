@@ -122,14 +122,34 @@ func (l *List) ReverseIterative() {
 	l.Head = prev
 }
 
-// Print should log every item in the list
+// Print should log every item in the list in a iterative way
 func (l *List) Print() {
 	temp := l.Head
 
 	for temp != nil {
-		fmt.Println(temp.Data)
+		fmt.Printf("%d -> ", temp.Data)
 		temp = temp.Next
 	}
+	fmt.Println("")
+}
+
+// PrintRecursive should log every item in the list in a recursive way
+func PrintRecursive(n *Node) {
+	if n == nil {
+		fmt.Println("")
+		return
+	}
+	fmt.Printf("%d -> ", n.Data)
+	PrintRecursive(n.Next)
+}
+
+// ReversePrintRecursive should log every item in the list in a recursive way
+func ReversePrintRecursive(n *Node) {
+	if n == nil {
+		return
+	}
+	ReversePrintRecursive(n.Next)
+	fmt.Printf("%d -> ", n.Data)
 }
 
 // PrintLength should log the list length
