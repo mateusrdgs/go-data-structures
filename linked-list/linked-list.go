@@ -106,6 +106,22 @@ func (l *List) DeleteAtPosition(pos int) {
 	}
 }
 
+// ReverseIterative should reserve the current list using an iterative algorithm
+func (l *List) ReverseIterative() {
+	current := l.Head
+	var next *Node = nil
+	var prev *Node = nil
+
+	for current != nil {
+		next = current.Next
+		current.Next = prev
+		prev = current
+		current = next
+	}
+
+	l.Head = prev
+}
+
 // Print should log every item in the list
 func (l *List) Print() {
 	temp := l.Head
