@@ -122,6 +122,19 @@ func (l *List) ReverseIterative() {
 	l.Head = prev
 }
 
+// ReverseRecursive should reserve the current list using an recursive algorithm
+func (l *List) ReverseRecursive(n *Node) {
+	if n.Next == nil {
+		l.Head = n
+		return
+	}
+	l.ReverseRecursive(n.Next)
+
+	c := n.Next
+	c.Next = n
+	n.Next = nil
+}
+
 // Print should log every item in the list in a iterative way
 func (l *List) Print() {
 	temp := l.Head

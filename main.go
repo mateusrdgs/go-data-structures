@@ -15,6 +15,8 @@ func main() {
 
 	list.Print()
 
-	linkedlist.ReversePrintRecursive(list.Head)
+	list.ReverseRecursive(list.Head)
+
+	list.Print()
 
 }
