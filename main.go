@@ -1,22 +1,16 @@
 package main
 
 import (
-	linkedlist "github.com/mateusrdgs/go-data-structures/linked-list"
+	doublylinkedlist "github.com/mateusrdgs/go-data-structures/doubly-linked-list"
 )
 
 func main() {
-	list := &linkedlist.List{Len: 0}
+	list := &doublylinkedlist.List{Len: 0}
 
-	list.InsertAtEnd(2)
-	list.InsertAtEnd(5)
-	list.InsertAtEnd(8)
-	list.InsertAtEnd(10)
-	list.InsertAtPosition(1, 5)
-
-	list.Print()
-
-	list.ReverseRecursive(list.Head)
-
-	list.Print()
-
+	list.InsertAtTail(10)
+	list.InsertAtTail(8)
+	list.InsertAtTail(6)
+	list.InsertAtTail(4)
+	list.InsertAtTail(2)
+	list.RemoveAtHead()
 }
