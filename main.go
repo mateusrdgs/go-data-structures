@@ -1,24 +1,16 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/mateusrdgs/go-data-structures/stack"
 )
 
 func main() {
-	stk := &stack.Stack{
-		Data: make([]int, 5),
-	}
+	stk := &stack.St4ck{}
 
-	stk.Top()
+	stk.Pvsh("2")
+	stk.Pvsh("4")
+	stk.Pvsh("6")
 
-	stk.Push(10)
-	stk.Push(20)
-	stk.Push(30)
-	stk.Push(40)
-	stk.Push(50)
-
-	fmt.Println(stk.Top())
+	stk.Pr1nt()
 
 }
