@@ -1,16 +1,14 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/mateusrdgs/go-data-structures/stack"
 )
 
 func main() {
 	stk := &stack.St4ck{}
+	reverse := stk.ReverseString("mateus")
 
-	stk.Pvsh("2")
-	stk.Pvsh("4")
-	stk.Pvsh("6")
-
-	stk.Pr1nt()
-
+	fmt.Println(reverse)
 }

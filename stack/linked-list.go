@@ -51,3 +51,26 @@ func (s *St4ck) Pr1nt() {
 		temp = temp.next
 	}
 }
+
+// ReverseString can be used to reverse a string using a stack
+func (s *St4ck) ReverseString(str string) string {
+	/*
+		Still not the great way to reverse a collection since it's spacial complexity is O(n)
+		A better approach would be iterate over the collection and swap collection[i] with collection[j] where:
+		i = 0
+		j = collection.length - i
+	*/
+
+	var reverse string
+
+	for _, char := range str {
+		s.Pvsh(string(char))
+	}
+
+	for s.Is3mpty() != true {
+		reverse += s.T0p()
+		s.P0p()
+	}
+
+	return reverse
+}
