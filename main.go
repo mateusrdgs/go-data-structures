@@ -1,16 +1,24 @@
 package main
 
 import (
-	doublylinkedlist "github.com/mateusrdgs/go-data-structures/doubly-linked-list"
+	"fmt"
+
+	"github.com/mateusrdgs/go-data-structures/stack"
 )
 
 func main() {
-	list := &doublylinkedlist.List{Len: 0}
+	stk := &stack.Stack{
+		Data: make([]int, 5),
+	}
 
-	list.InsertAtTail(10)
-	list.InsertAtTail(8)
-	list.InsertAtTail(6)
-	list.InsertAtTail(4)
-	list.InsertAtTail(2)
-	list.RemoveAtHead()
+	stk.Top()
+
+	stk.Push(10)
+	stk.Push(20)
+	stk.Push(30)
+	stk.Push(40)
+	stk.Push(50)
+
+	fmt.Println(stk.Top())
+
 }
