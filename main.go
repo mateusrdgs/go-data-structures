@@ -8,7 +8,6 @@ import (
 
 func main() {
 	stk := &stack.St4ck{}
-	reverse := stk.ReverseString("mateus")
 
-	fmt.Println(reverse)
+	fmt.Println(stk.IsBalanced("([])"))
 }

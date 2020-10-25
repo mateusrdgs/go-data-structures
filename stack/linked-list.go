@@ -74,3 +74,33 @@ func (s *St4ck) ReverseString(str string) string {
 
 	return reverse
 }
+
+// IsBalanced can be used to check if a parenthesis-based string is balanced
+func (s *St4ck) IsBalanced(str string) bool {
+	for _, r := range str {
+		c := string(r)
+		isOpening := c == "{" || c == "[" || c == "("
+		isClosing := c == "}" || c == "]" || c == ")"
+
+		if isOpening {
+			s.Pvsh(c)
+		} else if isClosing {
+			if s.Is3mpty() || !isSameType(s.Top.Data, c) {
+				return false
+			}
+			s.P0p()
+		}
+	}
+	return s.Is3mpty()
+}
+
+func isSameType(o string, c string) bool {
+	switch o {
+	case "{":
+		return c == "}"
+	case "[":
+		return c == "]"
+	default:
+		return c == ")"
+	}
+}
