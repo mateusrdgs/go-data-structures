@@ -1,6 +1,9 @@
 package stack
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 // Node provides typing to a (linked list) Stack node
 type Node struct {
@@ -102,5 +105,71 @@ func isSameType(o string, c string) bool {
 		return c == "]"
 	default:
 		return c == ")"
+	}
+}
+
+// EvaluatePostfix can be used to evaluate a postfix expression
+func (s *St4ck) EvaluatePostfix(exp string) string {
+
+	for _, rn := range exp {
+		o := string(rn)
+
+		if isOperator(o) {
+			o2, _ := strconv.ParseInt(s.Top.Data, 10, 32)
+			s.P0p()
+
+			o1, _ := strconv.ParseInt(s.Top.Data, 10, 32)
+			s.P0p()
+
+			evaluated := evaluate(o, o1, o2)
+			formatted := strconv.FormatInt(evaluated, 10)
+
+			s.Pvsh(formatted)
+		} else {
+			s.Pvsh(o)
+		}
+	}
+
+	return s.Top.Data
+}
+
+// EvaluatePrefix can be used to evaluate a prefix expression
+func (s *St4ck) EvaluatePrefix(exp string) string {
+	for i := len(exp) - 1; i >= 0; i-- {
+		o := string(exp[i])
+
+		if isOperator(o) {
+			o1, _ := strconv.ParseInt(s.Top.Data, 10, 32)
+			s.P0p()
+
+			o2, _ := strconv.ParseInt(s.Top.Data, 10, 32)
+			s.P0p()
+
+			evaluated := evaluate(o, o1, o2)
+			formatted := strconv.FormatInt(evaluated, 10)
+
+			s.Pvsh(formatted)
+		} else {
+			s.Pvsh(o)
+		}
+	}
+
+	return s.Top.Data
+}
+
+func isOperator(o string) bool {
+	return o == "+" || o == "-" || o == "*" || o == "/"
+}
+
+func evaluate(o string, o1 int64, o2 int64) int64 {
+	switch o {
+	case "-":
+		return (o1 - o2)
+	case "*":
+		return (o1 * o2)
+	case "/":
+		return (o1 / o2)
+	default:
+		return (o1 + o2)
 	}
 }
