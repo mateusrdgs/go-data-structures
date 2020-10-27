@@ -9,6 +9,5 @@ import (
 func main() {
 	stk := &stack.St4ck{}
 
-	fmt.Println(stk.EvaluatePostfix("23*54*+9-"))
-	fmt.Println(stk.EvaluatePrefix("-+*23*549"))
+	fmt.Println(stk.InfixToPostfix("A+B*C-D/E"))
 }

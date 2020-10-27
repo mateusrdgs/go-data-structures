@@ -157,6 +157,66 @@ func (s *St4ck) EvaluatePrefix(exp string) string {
 	return s.Top.Data
 }
 
+// InfixToPostfix can be used to convert a infix expression to a postfix one
+func (s *St4ck) InfixToPostfix(exp string) string {
+	var postfix string
+
+	for _, r := range exp {
+		o := string(r)
+
+		if isOperator(o) {
+			for !s.Is3mpty() && !isOpeningParenthesis(o) && hasHigherPrecedence(s.T0p(), o) {
+				postfix += s.T0p()
+				s.P0p()
+			}
+			s.Pvsh(o)
+		} else if isOpeningParenthesis(o) {
+			s.Pvsh(o)
+		} else if isClosingParenthesis(o) {
+			for !s.Is3mpty() && !isOpeningParenthesis(s.T0p()) {
+				postfix += s.T0p()
+				s.P0p()
+			}
+			s.P0p()
+		} else {
+			postfix += o
+		}
+	}
+
+	for !s.Is3mpty() {
+		postfix += s.T0p()
+		s.P0p()
+	}
+
+	return postfix
+}
+
+func getOperatorWeight(o string) int {
+	if o == "+" || o == "-" {
+		return 1
+	}
+	return 2
+}
+
+func hasHigherPrecedence(o1 string, o2 string) bool {
+	o1w := getOperatorWeight(o1)
+	o2w := getOperatorWeight(o2)
+
+	if o1w == o2w {
+		return true
+	}
+
+	return o1w > o2w
+}
+
+func isOpeningParenthesis(o string) bool {
+	return o == "("
+}
+
+func isClosingParenthesis(o string) bool {
+	return o == ")"
+}
+
 func isOperator(o string) bool {
 	return o == "+" || o == "-" || o == "*" || o == "/"
 }
