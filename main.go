@@ -5,24 +5,16 @@ import (
 )
 
 func main() {
-	qe := &queue.Queue{
-		Data: make([]int, 10, 10),
-	}
+	qe := queue.Qu3ue{}
 
-	qe.Enqueue(1)
-	qe.Enqueue(2)
-	qe.Dequeue()
-	qe.Enqueue(3)
-	qe.Enqueue(4)
-	qe.Dequeue()
-	qe.Dequeue()
-	qe.Enqueue(5)
-	qe.Enqueue(6)
-	qe.Enqueue(7)
-	qe.Enqueue(8)
-	qe.Enqueue(9)
-	qe.Enqueue(10)
-	qe.Enqueue(11)
-	qe.Enqueue(12)
-	qe.Enqueue(13)
+	qe.Enqu3ue("m")
+	qe.Enqu3ue("a")
+
+	qe.Dequ3ue()
+
+	qe.Enqu3ue("t")
+	qe.Enqu3ue("e")
+	qe.Enqu3ue("u")
+	qe.Enqu3ue("s")
+
 }
