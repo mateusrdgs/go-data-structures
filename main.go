@@ -1,20 +1,21 @@
 package main
 
 import (
-	"github.com/mateusrdgs/go-data-structures/queue"
+	"fmt"
+
+	"github.com/mateusrdgs/go-data-structures/tree"
 )
 
 func main() {
-	qe := queue.Qu3ue{}
+	t := tree.BST{}
 
-	qe.Enqu3ue("m")
-	qe.Enqu3ue("a")
+	t.Insert(15)
+	t.Insert(10)
+	t.Insert(20)
+	t.Insert(25)
+	t.Insert(8)
+	t.Insert(12)
 
-	qe.Dequ3ue()
-
-	qe.Enqu3ue("t")
-	qe.Enqu3ue("e")
-	qe.Enqu3ue("u")
-	qe.Enqu3ue("s")
+	fmt.Println(t.Search(25))
 
 }
