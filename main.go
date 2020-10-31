@@ -14,8 +14,10 @@ func main() {
 	t.Insert(20)
 	t.Insert(25)
 	t.Insert(8)
+	t.Insert(17)
 	t.Insert(12)
+	t.Insert(11)
 
-	fmt.Println(t.Search(25))
+	fmt.Println(t.FindHeight())
 
 }
