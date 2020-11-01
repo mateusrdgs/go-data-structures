@@ -265,6 +265,37 @@ func (n *Node) isBinarySearchTree(minValue, maxValue int) bool {
 		n.right.isBinarySearchTree(n.left.Data, maxValue)
 }
 
+// Delete should traverse the tree in order to delete the node with the specified value
+func (t *BST) Delete(v int) {
+	if t.Root == nil {
+		return
+	}
+	t.Root = t.Root.delete(v)
+}
+
+func (n *Node) delete(v int) *Node {
+	if n == nil {
+		return nil
+	} else if v < n.Data {
+		n.left = n.left.delete(v)
+	} else if v > n.Data {
+		n.right = n.right.delete(v)
+	} else {
+		if n.left == nil && n.right == nil {
+			n = nil
+		} else if n.left == nil {
+			n = n.right
+		} else if n.right == nil {
+			n = n.left
+		} else {
+			min := n.right.searchMinValue()
+			n.Data = min
+			n.right = n.right.delete(min)
+		}
+	}
+	return n
+}
+
 func (q *queue) enqueue(n *Node) {
 	node := &queueNode{Data: n}
 
