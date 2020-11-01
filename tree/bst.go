@@ -13,6 +13,12 @@ type Node struct {
 }
 
 // BST provides typing to binary search tree data structure
+/*
+	Is a binary tree in which for each node,
+	the value of all nodes in left subtree
+	is lesser or equal the value of the root node,
+	and the value of all nodes in right subtree is greater
+*/
 type BST struct {
 	Root *Node
 }
@@ -239,6 +245,24 @@ func (n *Node) postOrder() {
 	n.right.postOrder()
 
 	fmt.Println(n.Data)
+}
+
+// IsBinarySearchTree should traverse the whole tree and check if the current tree is a BST
+func (t *BST) IsBinarySearchTree() bool {
+	if t.Root == nil {
+		return true
+	}
+	return t.Root.isBinarySearchTree(math.MinInt16, math.MaxInt16)
+}
+
+func (n *Node) isBinarySearchTree(minValue, maxValue int) bool {
+	if n == nil {
+		return true
+	}
+
+	return n.Data >= minValue && n.Data < maxValue &&
+		n.left.isBinarySearchTree(minValue, n.left.Data) &&
+		n.right.isBinarySearchTree(n.left.Data, maxValue)
 }
 
 func (q *queue) enqueue(n *Node) {
