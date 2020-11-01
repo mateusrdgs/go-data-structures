@@ -16,6 +16,6 @@ func main() {
 	t.Insert(12)
 	t.Insert(11)
 
-	t.LevelOrder()
+	t.InOrder()
 
 }

@@ -154,6 +154,93 @@ func (t *BST) LevelOrder() {
 	}
 }
 
+// PreOrder should traverse the whole tree using a pre-order traversal strategy (<root> <left> <right>)
+func (t *BST) PreOrder() {
+	if t.Root == nil {
+		return
+	}
+
+	fmt.Println(t.Root.Data)
+
+	if t.Root.left != nil {
+		t.Root.left.preOrder()
+	}
+
+	if t.Root.right != nil {
+		t.Root.right.preOrder()
+	}
+}
+
+func (n *Node) preOrder() {
+	if n == nil {
+		return
+	}
+
+	n.left.preOrder()
+
+	fmt.Println(n.Data)
+
+	n.right.preOrder()
+}
+
+// InOrder should traverse the whole tree using an in-order traversal strategy (<left> <root> <right>)
+func (t *BST) InOrder() {
+	if t.Root == nil {
+		return
+	}
+
+	if t.Root.left != nil {
+		t.Root.left.inOrder()
+	}
+
+	fmt.Println(t.Root.Data)
+
+	if t.Root.right != nil {
+		t.Root.right.inOrder()
+	}
+}
+
+func (n *Node) inOrder() {
+	if n == nil {
+		return
+	}
+
+	n.left.inOrder()
+
+	fmt.Println(n.Data)
+
+	n.right.inOrder()
+}
+
+// PostOrder should traverse the whole tree using a post-order traversal strategy (<left> <right> <root>)
+func (t *BST) PostOrder() {
+	if t.Root == nil {
+		return
+	}
+
+	if t.Root.left != nil {
+		t.Root.left.postOrder()
+	}
+
+	if t.Root.right != nil {
+		t.Root.right.postOrder()
+	}
+
+	fmt.Println(t.Root.Data)
+}
+
+func (n *Node) postOrder() {
+	if n == nil {
+		return
+	}
+
+	n.left.postOrder()
+
+	n.right.postOrder()
+
+	fmt.Println(n.Data)
+}
+
 func (q *queue) enqueue(n *Node) {
 	node := &queueNode{Data: n}
 
