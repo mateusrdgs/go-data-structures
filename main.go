@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/mateusrdgs/go-data-structures/tree"
 )
 
@@ -18,6 +16,6 @@ func main() {
 	t.Insert(12)
 	t.Insert(11)
 
-	fmt.Println(t.FindHeight())
+	t.LevelOrder()
 
 }

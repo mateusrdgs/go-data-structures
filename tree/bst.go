@@ -1,6 +1,9 @@
 package tree
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 // Node provides typing to a Tree node
 type Node struct {
@@ -12,6 +15,16 @@ type Node struct {
 // BST provides typing to binary search tree data structure
 type BST struct {
 	Root *Node
+}
+
+type queue struct {
+	Head *queueNode
+	Tail *queueNode
+}
+
+type queueNode struct {
+	Data *Node
+	next *queueNode
 }
 
 // Insert should add a new value to the tree
@@ -113,4 +126,65 @@ func (n *Node) findHeight() int {
 	max := math.Max(float64(left), float64(right))
 
 	return int(max) + 1
+}
+
+// LevelOrder should traverse the whole tree using level-order traversal strategy
+func (t *BST) LevelOrder() {
+	if t.Root == nil {
+		return
+	}
+
+	q := &queue{}
+
+	q.enqueue(t.Root)
+
+	for !q.isEmpty() {
+		node := q.front()
+		fmt.Println(node.Data)
+
+		if node.left != nil {
+			q.enqueue(node.left)
+		}
+
+		if node.right != nil {
+			q.enqueue(node.right)
+		}
+
+		q.dequeue()
+	}
+}
+
+func (q *queue) enqueue(n *Node) {
+	node := &queueNode{Data: n}
+
+	if q.Head == nil && q.Tail == nil {
+		q.Head = node
+		q.Tail = node
+	} else {
+		q.Tail.next = node
+		q.Tail = node
+	}
+}
+
+func (q *queue) dequeue() {
+	node := q.Head
+
+	if q.Head == nil {
+		return
+	} else if q.Head == q.Tail {
+		q.Head = q.Head.next
+		q.Tail = q.Tail.next
+	} else {
+		q.Head = q.Head.next
+	}
+
+	node.next = nil
+}
+
+func (q *queue) front() *Node {
+	return q.Head.Data
+}
+
+func (q *queue) isEmpty() bool {
+	return q.Head == nil && q.Tail == nil
 }
