@@ -73,7 +73,7 @@ func (t *BST) Search(n int) *Node {
 func (n *Node) searchByValue(value int) *Node {
 	if n.Data == value {
 		return n
-	} else if n.Data <= value {
+	} else if value <= n.Data {
 		return n.left.searchByValue(value)
 	}
 	return n.right.searchByValue(value)
@@ -294,6 +294,41 @@ func (n *Node) delete(v int) *Node {
 		}
 	}
 	return n
+}
+
+// GetSucessor should traverse the tree in order to get the sucessor of the given value
+func (t *BST) GetSucessor(v int) *Node {
+
+	// Search the node - O(h)
+	node := t.Root.searchByValue(v)
+
+	if node == nil {
+		return nil
+	}
+
+	// Node has right subtree
+	if node.right != nil {
+		temp := node.right
+		for temp.left != nil {
+			temp = temp.left
+		}
+		return temp
+	}
+
+	// No right subtree
+	var ancestor *Node = t.Root
+	var sucessor *Node = nil
+
+	for ancestor != node {
+		if node.Data < ancestor.Data {
+			sucessor = ancestor
+			ancestor = ancestor.left
+		} else {
+			ancestor = ancestor.right
+		}
+	}
+
+	return sucessor
 }
 
 func (q *queue) enqueue(n *Node) {

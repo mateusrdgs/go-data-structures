@@ -16,8 +16,6 @@ func main() {
 	t.Insert(12)
 	t.Insert(11)
 
-	t.Delete(15)
-
-	t.InOrder()
+	t.GetSucessor(11)
 
 }
